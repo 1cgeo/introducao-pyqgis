@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>4) Processing - PyQgis</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "4) Processing";
+    var mkdocs_page_input_path = "4)-Processing.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> PyQgis</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introdução ao PyQGIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%29-Introdu%C3%A7%C3%A3o-ao-Python/">1) Introdução ao Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%29-Links-%C3%9Ateis/">2) Links Úteis</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../3%29-Console-Python/">3) Console Python</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">4) Processing</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../5%29-Plugin/">5) Plugin</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%29-Colaboradores/">6) Colaboradores</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">PyQgis</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>4) Processing</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="instalando-e-abrindo-o-processing-no-qgis">Instalando e abrindo o processing no QGIS</h2>
+<p>O processing é um complemento que normalmente já vem instalado no QGIS, porém para usá-lo é necessário ativar antes. Para ativá-lo, vá em: Complementos &gt;  Gerenciar e Instalar Complementos, como mostrado na figura abaixo:</p>
+<p><img alt="" src="../images/processing1.png" /></p>
+<p>Na tela que se abre em seguida, clique em “instalados”. Dê um check ao lado da opção Processing.</p>
+<p><img alt="" src="../images/processing2.png" /></p>
+<p>Na aba “Opções” deve ser encontrada a opção “Processar” (ou “Processing” na versão em Inglês). Clique nela e em seguida em “Caixa de ferramentas”. </p>
+<p><img alt="" src="../images/processing3.png" /></p>
+<p>No lado direito aparecerá a caixa de ferramentas de processamento. Nela, é possível encontrar vários processings nativos e outros pacotes de processings, como o GRASS, conforme mostrado na figura abaixo:</p>
+<p><img alt="" src="../images/processing4.png" /></p>
+<p>Na Caixa de Ferramentas de processamento é possível encontrar a opção “Scripts”. Esta opção permite trabalhar com processings através de um script em Python. As opções são: “Criar novo script”, “Criar novo script a partir do modelo”, “Abrir script existente” e “Adicionar script à caixa de ferramentas”.</p>
+<p><img alt="" src="../images/processing5.png" /></p>
+<p><img alt="" src="../images/processing6.png" /></p>
+<h2 id="estrutura-de-um-processing">Estrutura de um processing</h2>
+<p>Para usar um script de processamento é necessário clicar em “Criar novo Script a partir de modelo", na opção de script dentro da caixa de ferramentas. Uma tela nova abrirá com um modelo de script de um processing. Basicamente o script é dividido em quatro partes: importação dos objetos da API do QGIS, informações do algoritmo, definição dos parâmetros e lógica do algoritmo.</p>
+<p><img alt="" src="../images/processing7.png" /></p>
+<p>A primeira parte do algoritmo é a importação dos objetos da API do QGIS.</p>
+<p><img alt="" src="../images/processing8.png" /></p>
+<p>A segunda parte do algoritmo se refere às informações do algoritmo.</p>
+<ul>
+<li>Não se pode ter espaço entre os caracteres no nome da classe.</li>
+</ul>
+<p><img alt="" src="../images/processing9.png" /></p>
+<ul>
+<li>O “tr” é utilizado para tradução da aplicação em diferentes línguas.</li>
+</ul>
+<p><img alt="" src="../images/processing10.png" /></p>
+<ul>
+<li>“createInstance” retorna uma nova instância do algoritmo.</li>
+</ul>
+<p><img alt="" src="../images/processing11.png" /></p>
+<ul>
+<li>“name” retorna o nome do algoritmo, sendo normalmente utilizadas letras minúsculas para isso.</li>
+</ul>
+<p><img alt="" src="../images/processing12.png" /></p>
+<ul>
+<li>“displayName” é o que aparece na tela do usuário que for usar o algoritmo. Além disso, também é o nome que aparecerá na Caixa de Ferramentas.</li>
+</ul>
+<p><img alt="" src="../images/processing13.png" /></p>
+<ul>
+<li>“group” retorna o nome do grupo ao que o algoritmo pertence. Este grupo também aparece na Caixa de Ferramentas ao adicionar o script à Caixa de Ferramentas.</li>
+</ul>
+<p><img alt="" src="../images/processing14.png" /></p>
+<p><img alt="" src="../images/processing15.png" /></p>
+<ul>
+<li>“groupId” retorna o identificador único do grupo ao qual o algoritmo pertence. Normalmente, são usadas apenas letras minúsculas.</li>
+</ul>
+<p><img alt="" src="../images/processing16.png" /></p>
+<ul>
+<li>“shortHelpString” retorna uma pequena explicação sobre o algoritmo, que  aparece na interface do usuário ao usar o processing.</li>
+</ul>
+<p><img alt="" src="../images/processing17.png" /></p>
+<p><img alt="" src="../images/processing18.png" /></p>
+<p>A terceira parte do algoritmo, definição dos parâmetros, é onde se define os inputs e outputs do processing. É possível definir, nessa parte, valores default de input, definir a unidade de medida e o tipo de entrada e saída. Esses parâmetros devem ser declarados dentro de “initAlgorithm”.</p>
+<p><img alt="" src="../images/processing19.png" /></p>
+<p>A quarta, e última parte, do processing, lógica do algoritmo, é onde ocorre toda a função a ser executada com os parâmetros de entrada e retornando as saídas. Esta parte normalmente se inicia acessando os parâmetros de entrada nos formatos desejados e que serão utilizados ao longo do código. Essa parte deve ficar dentro de “processAlgorithm”.</p>
+<p><img alt="" src="../images/processing20.png" /></p>
+<h2 id="executando-o-processing-via-python">Executando o processing via Python</h2>
+<p>A execução de processings pode se dar por meio do console Python existente no QGIS. Isso ocorre através de uma estrutura fixa e menos intuitiva, porém de grande utilidade, uma vez que o usuário pode entender cada passo que será executado pelo processing e identificar possíveis erros.</p>
+<p><img alt="" src="../images/processing21.png" /></p>
+<p>Na linha 1 é carregada a camada como “uri”. A seguir, processing.run() é o que de fato executa o processing sobre a camada de entrada. Em seguida, são informados os parâmetros e as camadas de entrada, sequencialmente, e separados por vírgula. Veja que pode ser necessário mais de uma camada de entrada, nesse caso existiria mais de um ‘INPUT’ e seria necessário carregar mais camadas antes, por exemplo uma “uri_2”.</p>
+<p>Na janela à esquerda dos resultados do código rodado, aparecem diversas informações acerca do processing, incluindo o que ele faz, os campos a serem preenchidos e o tipo de cada elemento.</p>
+<p><img alt="" src="../images/processing22.png" /></p>
+<h2 id="executando-o-processing-em-serie-grass-e-nativo">Executando o processing em série (GRASS e Nativo)</h2>
+<p>Executar processings em série, na interface do PyQGIS, nada mais é do que executar sucessivamente vários processings, usando a saída de um (output) como parâmetro ou entrada (input) de outro. Para isso, é necessário conhecer exatamente o nome do processing e os parâmetros de entrada.</p>
+<p>No exemplo abaixo, inicialmente, carrega-se três camadas e define-se “expression”. O primeiro processing então é executado, e o resultado é salvo como “danube”.</p>
+<p><img alt="" src="../images/processing23.png" /></p>
+<p>A seguir mais uma variável é definida e o segundo processing é executado. Perceba que na entrada dele é passado o resultado do primeiro, “danube”. Por fim, o procedimento é repetido para o terceiro processing, e o resultado final é exibido no QGIS pelo comando da linha 21.</p>
+<h2 id="definindo-parametros-de-entrada-e-saida">Definindo parâmetros de entrada e saída</h2>
+<p>Os parâmetros são definidos na função "InitAlgorithm(self, config = none)”. Sucessivamente, são definidos os INPUTs, parâmetros auxiliares e OUTPUTs.</p>
+<ul>
+<li><strong>INPUTS:</strong> é importante definir o tipo de camada de entrada, como Point, Line ou Polygon, na última linha.</li>
+</ul>
+<p><img alt="" src="../images/processing24.png" /></p>
+<ul>
+<li><strong>Parâmetros:</strong></li>
+</ul>
+<p><img alt="" src="../images/processing25.png" /></p>
+<ul>
+<li><strong>OUTPUTS:</strong></li>
+</ul>
+<p><img alt="" src="../images/processing26.png" /></p>
+<p>Após definir os parâmetros na parte “def InitAlgorithm()”, é importante chamá-los no código principal. A estrutura para realizar essa chamada é sempre a mesma:</p>
+<p><img alt="" src="../images/processing27.png" /></p>
+<h2 id="executando-processing-dentro-do-processing">Executando processing dentro do processing</h2>
+<p>É possível, e às vezes bastante útil, executar um processing já existente dentro de um processing que esteja sendo criado. Para isso, utiliza-se uma estrutura bastante similar à execução de processing na interface em Python do QGIS.</p>
+<p><img alt="" src="../images/processing28.png" /></p>
+<p>Os processings são chamados na parte do código principal, em “def processAlgorithm( )”, conforme a figura acima. Após isso, o resultado do processing é salvo no parâmetro de “processing.run( )” e pode ser utilizado futuramente no código.</p>
+<h2 id="modificando-camadas-vetoriais-via-processing">Modificando camadas vetoriais via processing</h2>
+<p>É possível adicionar feições às camadas vetoriais utilizando-se o recurso “addFeatures( )”, conforme a figura abaixo:</p>
+<p><img alt="" src="../images/processing29.png" /></p>
+<p>É possível também excluir feições com o recurso “deleteFeatures( )”.</p>
+<p><img alt="" src="../images/processing30.png" /></p>
+<p>É possível modificar feições com o recurso “changeAttributeValues( )”, no caso de valores de atributos, ou “changeGeometryValues( )”, no caso de geometria.</p>
+<p><img alt="" src="../images/processing31.png" /></p>
+<h2 id="usando-o-feedback-no-processing">Usando o feedback no processing</h2>
+<p>Algumas etapas dentro do processing podem levar um longo tempo para serem executadas, fazendo com que o usuário não tenha controle sobre a etapa que está sendo realizada. Um recurso que pode ajudar nesse problema é o “feedback”.</p>
+<p>O feedback é feito através do comando “feedback.setProgressText(‘Digite aqui o feedback...’)” e é posto ao longo do código antes da etapa na qual se deseja localizar.</p>
+<p><img alt="" src="../images/processing32.png" /></p>
+<p>No código acima, pode-se notar o feedback na linha 179, que auxilia o usuário a saber em qual etapa do processing encontra-se, no caso, se já está “Calculando diferença”. Portanto, é indicado seu uso antes de cada etapa do processing.</p>
+<h2 id="classes-qgsprocessingparameter">Classes QgsProcessingParameter</h2>
+<p>Algumas classes muito interessantes no desenvolvimento PyQGIS são as do tipo <strong>QgsProcessingParameter</strong>. Abaixo, listamos aquelas bastante utilizadas em nossos códigos:</p>
+<ul>
+<li>
+<p>QgsProcessingParameterVectorLayer (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterVectorLayer.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterVectorLayer.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterFeatureSink (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterFeatureSink.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterFeatureSink.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterNumber (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterNumber.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterNumber.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterMultipleLayers (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterMultipleLayers.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterMultipleLayers.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterField (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterField.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterField.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterString (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterString.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterString.html</a>)</p>
+</li>
+<li>
+<p>QgsProcessingParameterFeatureSource (<a href="https://qgis.org/pyqgis/master/core/QgsProcessingParameterFeatureSource.html">https://qgis.org/pyqgis/master/core/QgsProcessingParameterFeatureSource.html</a>)</p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../5%29-Plugin/" class="btn btn-neutral float-right" title="5) Plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../3%29-Console-Python/" class="btn btn-neutral" title="3) Console Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../3%29-Console-Python/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../5%29-Plugin/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

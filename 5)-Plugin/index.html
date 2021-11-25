@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>5) Plugin - PyQgis</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "5) Plugin";
+    var mkdocs_page_input_path = "5)-Plugin.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> PyQgis</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introdução ao PyQGIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%29-Introdu%C3%A7%C3%A3o-ao-Python/">1) Introdução ao Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%29-Links-%C3%9Ateis/">2) Links Úteis</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../3%29-Console-Python/">3) Console Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../4%29-Processing/">4) Processing</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">5) Plugin</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%29-Colaboradores/">6) Colaboradores</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">PyQgis</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>5) Plugin</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Plugins são programas, ou extensões, com o objetivo de adicionar recursos e funcionalidades extras a algum programa principal. Os plugins são ferramentas essenciais em diversos programas, pois, como no caso do QGIS, possibilitam desenvolvedores de incrementarem as ferramentas disponíveis conforme as necessidades encontradas, não requisitando do criador do programa base a inserção daquela funcionalidade. Com isso, é possível baixar extensões, criadas pelos desenvolvedores do QGIS, ou independentes, que atuem mais especificamente no tema demandado.</p>
+<h2 id="criando-um-plugin-no-qgis">Criando um plugin no QGIS</h2>
+<p>São necessários alguns passos para a criação de um plugin no QGIS. Abaixo, listamos eles:
+* Instalar o Plugin Builder 3 no QGIS. Na aba “Complementos”, clicar em “Gerenciar e Instalar Complementos...”.</p>
+<p><img alt="" src="../images/plugin1.png" /></p>
+<ul>
+<li>Pesquisar “Plugin Builder”.</li>
+</ul>
+<p><img alt="" src="../images/plugin2.png" /></p>
+<ul>
+<li>
+<p>Clicar em “Instalar complemento”.</p>
+</li>
+<li>
+<p>Abrir a aba “Complementos”, ir em “Plugin Builder” e abrir o “Plugin Builder”.</p>
+</li>
+</ul>
+<p><img alt="" src="../images/plugin3.png" /></p>
+<ul>
+<li>Preencher os seguintes campos:</li>
+<li><strong>Class Name:</strong> Nome para criar a classe Python do plugin.</li>
+<li><strong>Module Name:</strong> Nome para criar o módulo (arquivo) do plugin.</li>
+<li><strong>Plugin Name:</strong> Título para o Plugin (no plugin manager e instalador).</li>
+<li><strong>Description:</strong> Descrição breve da função do plugin.</li>
+<li><strong>Version Number:</strong> Número da versão do plugin, sugestão 0.1.</li>
+<li><strong>Minimum QGIS Version:</strong> Versão do QGIS necessária para o plugin funcionar.</li>
+<li><strong>Author:</strong> Autor do plugin.</li>
+<li><strong>Email Address:</strong> Email para contato dos usuários do plugin.</li>
+</ul>
+<p><img alt="" src="../images/plugin4.png" /></p>
+<ul>
+<li>Preencher a descrição detalhada do plugin.</li>
+</ul>
+<p><img alt="" src="../images/plugin5.png" /></p>
+<ul>
+<li>Escolher o tipo de plugin a ser criado e o texto para ser exibido no menu. Escolher o menu em que aparecerá o plugin.</li>
+</ul>
+<p><img alt="" src="../images/plugin6.png" /></p>
+<ul>
+<li>Escolher os componentes adicionais do plugin:</li>
+<li><strong>Internationalization:</strong> Adicionar textos transcritos ao plugin.</li>
+<li><strong>Help:</strong> Cria um arquivo de ajuda.</li>
+<li><strong>Unit tests:</strong> Cria conjunto de testes para o plugin.</li>
+<li><strong>Helper scripts:</strong> Adiciona um script de ajuda para o plugin.</li>
+<li><strong>Makefile:</strong> Adiciona um Makefile para o plugin.</li>
+</ul>
+<p><img alt="" src="../images/plugin7.png" /></p>
+<ul>
+<li>Preencher também:</li>
+<li><strong>Bug Tracker:</strong> Url para o bug tracker do plugin.</li>
+<li><strong>Repository:</strong> algum repositório como GitHub</li>
+<li><strong>Home page (opcional):</strong> página do plugin</li>
+<li><strong>Tags (opcional).</strong></li>
+</ul>
+<p><img alt="" src="../images/plugin8.png" /></p>
+<h2 id="qt-designer">QT Designer</h2>
+<p>A utilização do Qt Designer é muito indicada por alguns motivos. Primeiramente, ele é um programa simples e com muitas funcionalidades para a criação de UIs (User Interfaces), permitindo ao desenvolvedor modelar uma interface da forma que quiser de maneira visual e prática. Além disso, outra grande vantagem do programa é já vir instalado com o QGIS, havendo uma boa integração entre os programas. Assim, qualquer máquina com o QGIS instalado deve ter o Qt Designer a parte, como na figura abaixo.</p>
+<p><img alt="" src="../images/plugin9.png" /></p>
+<p>Ao abrir o programa, a seguinte janela aparecerá:</p>
+<p><img alt="" src="../images/plugin10.png" /></p>
+<p>Selecione “Create”, criando, assim, uma caixa de diálogo com botões, fazendo com que seja possível criar uma interface do zero. Assim, chega-se ao programa em si, que pode ser dividido em partes, conforme será explicado abaixo.</p>
+<p><img alt="" src="../images/plugin11.png" /></p>
+<p><strong>1. Caixa de Ferramentas (Widget Box)</strong>
+Os elementos da interface podem ter diversas funcionalidades, sendo classificados como widgets e divididos em tipos, tendo cada um a sua especificação.  Ao arrastar um desses widgets para a sua interface, ele será adicionado e pode ser customizado de várias formas. Existem mais widgets ainda do que mostrados na imagem abaixo, alguns com funcionalidades específicas para o QGIS, inclusive. </p>
+<p><img alt="" src="../images/plugin12.png" /></p>
+<p><strong>2. Configuração de layout:</strong></p>
+<p><img alt="" src="../images/plugin13.png" /></p>
+<p>Nesta parte, as várias formas de configuração de layout são disponibilizadas e podem ser inseridas para a estruturação dos elementos na interface. Podem ser vistos os formatos verticais, horizontais, agrupados, entre outros. Apesar de não parecer muito essencial num primeiro momento, a formatação de layout é muito importante para a esquematização da interface, ordenamento dos itens e facilita também a mudança de escala e espaçamento da interface.</p>
+<p><strong>3. Inspeção de objeto</strong>
+Nesta aba, os elementos gráficos serão mostrados de forma hierárquica, assim sendo importante alterá-la se for necessária uma variação em caso de sobreposição. Aqui também é mostrado a estruturação de layouts que podem estar presentes e quais elementos estão inseridos nele, como no exemplo ao lado com um formato de grupos e 3 Check Boxs existentes.</p>
+<p><img alt="" src="../images/plugin14.png" /></p>
+<p><strong>4. Editor de propriedades</strong>
+Por fim, a aba de edição das propriedades de um elemento. Essa é uma das abas mais importantes, pois nela é possível editar praticamente qualquer característica do elemento inserido. </p>
+<p>Entre essas alterações, pode-se mexer na geometria, nome, fonte e mais funcionalidades. Essas características também podem ser alteradas por código, ao se criar o plugin em si. Esse editor também mostra o nome do elemento, que deve ser utilizado se necessário via código.</p>
+<p><img alt="" src="../images/plugin15.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../6%29-Colaboradores/" class="btn btn-neutral float-right" title="6) Colaboradores">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../4%29-Processing/" class="btn btn-neutral" title="4) Processing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../4%29-Processing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../6%29-Colaboradores/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>3) Console Python - PyQgis</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "3) Console Python";
+    var mkdocs_page_input_path = "3)-Console-Python.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> PyQgis</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introdução ao PyQGIS</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1%29-Introdu%C3%A7%C3%A3o-ao-Python/">1) Introdução ao Python</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2%29-Links-%C3%9Ateis/">2) Links Úteis</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">3) Console Python</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../4%29-Processing/">4) Processing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../5%29-Plugin/">5) Plugin</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../6%29-Colaboradores/">6) Colaboradores</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">PyQgis</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>3) Console Python</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="iniciando-no-console">Iniciando no Console</h2>
+<p>O QGIS fornece um console Python integrado para a elaboração de scripts. Ele pode ser iniciado pelo comando CTRL+ALT+P ou pelo menu Complementos -&gt; Terminal Python.</p>
+<h2 id="criando-e-lendo-um-projeto">Criando e lendo um projeto</h2>
+<p>Para criar um projeto, é necessário usar o método “write()”.</p>
+<pre><code class="python">projeto= QgsProject.instance()
+projeto.write('c:/Users/nome/teste.qgs')
+</code></pre>
+
+<p>Para checar se o projeto foi realmente criado, feche e abra o QGIS e digite o código para carregar o projeto.</p>
+<pre><code class="python">projeto= QgsProject.instance()
+projeto.read('c:/Users/nome/teste.qgs')
+</code></pre>
+
+<p><strong>1. Adicionando camadas vetoriais</strong>
+É necessário que se faça as seguintes importações:</p>
+<pre><code class="python">import os 
+from qgis.core import (QgsVectorLayer)
+</code></pre>
+
+<p>Em situações como essa, o programador deve especificar os indicadores da fonte de dados da camada, como, por exemplo, o nome da camada e seu diretório.</p>
+<pre><code class="python">pontos_layer = &quot;c:/Users/nome/pontos.shp&quot;
+vlayer = QgsVectorLayer(pontos_layer, &quot;pontos layer&quot;, &quot;ogr&quot;)
+if not vlayer.isValid():
+    print(&quot;Layer failed to load!&quot;)
+else:
+    QgsProject.instance().addMapLayer(vlayer)
+</code></pre>
+
+<p>O jeito mais fácil e rápido de abrir e exibir uma camada vetorial no QGIS é através do método <strong>addVectorLayer()</strong>.</p>
+<pre><code class="python">path_para_pontos_layer = &quot;c:/Users/nome/pontos.shp&quot;
+vlayer = iface.addVectorLayer(path_para_pontos_layer, &quot;pontos layer&quot;, &quot;ogr&quot;)
+if not vlayer:
+  print(&quot;Layer failed to load!&quot;)
+</code></pre>
+
+<p><strong>2. Adicionando camadas raster</strong>
+Para acessar arquivos raster, a biblioteca GDAL é usada. Ele suporta uma ampla variedade de formatos de arquivo. Caso você tenha problemas para abrir alguns arquivos, verifique se o GDAL tem suporte para o formato específico (nem todos os formatos estão disponíveis por padrão).</p>
+<pre><code class="python">import os 
+from qgis.core import (QgsVectorLayer)
+path_to_tif = &quot;C:/Users/nome/imagem.tif&quot;
+iface.addRasterLayer(path_to_tif, &quot;layer name you like&quot;)
+if not rlayer.isValid():
+    print(&quot;Layer failed to load!&quot;)
+</code></pre>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>É possível acessar as camadas carregadas no índice para recuperar informações. Pode-se utilizar o QgsProject da seguinte forma:</p>
+<pre><code class="python">layers = QgsProject.instance().mapLayers()
+print(layers)
+</code></pre>
+
+<h2 id="trabalhando-com-camadas-raster">Trabalhando com camadas raster</h2>
+<p>Uma camada raster consiste em uma ou mais bandas raster - conhecidas como rasters de banda única e multi bandas. Uma banda representa uma matriz de valores. Uma imagem colorida (por exemplo, foto aérea) é um raster que consiste em faixas vermelhas, azuis e verdes. Abaixo, seguem comandos importantes para a manipulação de rasters:</p>
+<pre><code class="python">path_to_tif = &quot;C:/Users/nome/img.tif&quot;
+rlayer = QgsRasterLayer(path_to_tif, &quot;imagem&quot;)
+</code></pre>
+
+<ul>
+<li>Obter a resolução do raster:</li>
+</ul>
+<pre><code class="python">print(rlayer.width(), rlayer.height())
+--------------------------------------
+800 800
+</code></pre>
+
+<ul>
+<li>Obter a extensão da camada em um QgsRectangle:</li>
+</ul>
+<pre><code class="python">print(rlayer.extent())
+----------------------
+&lt;QgsRectangle: 290305.20000000001164153 7471848, 291265.20000000001164153 7472808&gt;
+</code></pre>
+
+<ul>
+<li>Obter a extensão da camada através de uma string:</li>
+</ul>
+<pre><code class="python">print(rlayer.extent().toString())
+---------------------------------
+290305.2000000000116415,7471848.0000000000000000,291265.2000000000116415,7472808.0000000000000000
+</code></pre>
+
+<ul>
+<li>Obter o tipo do raster (0 = GrayOrUndefined (single band), 1 = Palette (single band), 2 = Multiband)</li>
+</ul>
+<pre><code class="python">print(rlayer.rasterType())
+--------------------------
+2
+</code></pre>
+
+<ul>
+<li>Obter o número de bandas do raster:</li>
+</ul>
+<pre><code class="python">print(rlayer.bandCount())
+-------------------------
+8
+</code></pre>
+
+<h2 id="trabalhando-com-camadas-vetoriais">Trabalhando com camadas vetoriais</h2>
+<p><strong>1. Recuperando informações sobre atributos</strong></p>
+<p>É possível recuperar informações sobre os campos associados a uma camada vetorial chamando fields() de um QgsVectorLayer:</p>
+<pre><code class="python">vlayer = QgsVectorLayer(pontos_layer, &quot;pontos layer&quot;, &quot;ogr&quot;)
+for field in vlayer.fields():
+    print(field.name(), field.typeName())
+</code></pre>
+
+<p><strong>2. Iterando sobre camada vetorial</strong></p>
+<p>A iteração sobre os recursos em uma camada vetorial é uma das tarefas mais comuns. Abaixo está um exemplo de código básico simples para executar esta tarefa e mostrando algumas informações sobre cada recurso:</p>
+<pre><code class="python">pontos_layer = &quot;c:/users/nome_do_usuario/pontos.shp&quot;
+vlayer = iface.addVectorLayer(pontos_layer, &quot;pontos layer&quot;, &quot;ogr&quot;)
+layer = iface.activeLayer()
+features = layer.getFeatures()
+for feature in features:
+    print(&quot;Feature ID: &quot;, feature.id())
+    geom = feature.geometry()
+    geomSingleType = QgsWkbTypes.isSingleType(geom.wkbType())
+    if geom.type() == QgsWkbTypes.PointGeometry:
+        if geomSingleType:
+            x = geom.asPoint()
+            print(&quot;Point: &quot;, x)
+        else:
+            x = geom.asMultiPoint()
+            print(&quot;MultiPoint: &quot;, x)
+    elif geom.type() == QgsWkbTypes.LineGeometry:
+        if geomSingleType:
+            x = geom.asPolyline()
+            print(&quot;Line: &quot;, x, &quot;length: &quot;, geom.length())
+        else:
+            x = geom.asMultiPolyline()
+            print(&quot;MultiLine: &quot;, x, &quot;length: &quot;, geom.length())
+    elif geom.type() == QgsWkbTypes.PolygonGeometry:
+        if geomSingleType:
+            x = geom.asPolygon()
+            print(&quot;Polygon: &quot;, x, &quot;Area: &quot;, geom.area())
+        else:
+            x = geom.asMultiPolygon()
+            print(&quot;MultiPolygon: &quot;, x, &quot;Area: &quot;, geom.area())
+    else:
+        print(&quot;Unknown or invalid geometry&quot;)
+    attrs = feature.attributes()
+    print(attrs)
+    break
+</code></pre>
+
+<p><strong>3. Seleção de recursos</strong></p>
+<p>Os recursos selecionados são normalmente destacados em uma cor diferente, para chamar a atenção do usuário sobre a seleção. Às vezes, pode ser útil selecionar recursos de forma programática ou alterar a cor padrão.</p>
+<ul>
+<li>Para selecionar todos os recursos, o selectAll()  pode ser usado:</li>
+</ul>
+<pre><code class="python">pontos_layer = &quot;c:/users/nome_do_usuario/pontos.shp&quot;
+vlayer = iface.addVectorLayer(pontos_layer, &quot;pontos layer&quot;, &quot;ogr&quot;)
+layer = iface.activeLayer()
+layer.selectAll()
+</code></pre>
+
+<ul>
+<li>Para selecionar usando uma expressão, use o selectByExpression():</li>
+</ul>
+<pre><code class="python">layer = iface.activeLayer()
+layer.selectByExpression('&quot;Class&quot;=\'B52\' and &quot;Heading&quot; &gt; 10 and &quot;Heading&quot; &lt;70', QgsVectorLayer.SetSelection)
+</code></pre>
+
+<ul>
+<li>Para alterar a cor de seleção, você pode usar o setSelectionColor() do QgsMapCanvas mostrado no exemplo a seguir:</li>
+</ul>
+<pre><code class="python">iface.mapCanvas().setSelectionColor( QColor(&quot;red&quot;) )
+</code></pre>
+
+<p><strong>4. Acessando atributos</strong></p>
+<p>Os atributos podem ser referidos por seus nomes: </p>
+<pre><code class="python">print(feature['name'])
+</code></pre>
+
+<p>Como alternativa, os atributos podem ser referenciados por índice:</p>
+<pre><code class="python">print(feature[1])
+</code></pre>
+
+<p><strong>5. Iterando sobre recursos selecionados</strong></p>
+<p>Se for preciso iterar sobre um determinado subconjunto de recursos em uma camada, como aqueles dentro de uma determinada área, será necessário adicionar um objeto QgsFeatureRequest à getFeatures() chamada, como no exemplo abaixo:</p>
+<pre><code class="python">areaOfInterest = QgsRectangle(450290,400520, 450750,400780)
+request = QgsFeatureRequest().setFilterRect(areaOfInterest)
+for feature in layer.getFeatures(request):
+    pass
+</code></pre>
+
+<p><strong>6. Adicionar recursos</strong></p>
+<ul>
+<li><strong>Adicionar campo:</strong></li>
+</ul>
+<pre><code class="python">from PyQt5.QtCore import QVariant
+layer_provider=layer.dataProvider()
+layer_provider.addAttributes([QgsField(&quot;Length&quot;,QVariant.Double)])
+layer.updateFields()
+print(layer.fields().names())
+</code></pre>
+
+<ul>
+<li><strong>Deletar campo:</strong></li>
+</ul>
+<pre><code class="python">layer_provider.deleteAttributes([1])
+layer.updateFields()
+</code></pre>
+
+<p><strong>7. Modificando camadas vetoriais</strong></p>
+<p>Ao editar vetores dentro do QGIS, deve-se primeiro iniciar o modo de edição para uma camada particular, então fazer algumas modificações e finalmente confirmar (ou reverter) as mudanças, conforme o exemplo abaixo:</p>
+<pre><code class="python">from qgis.PyQt.QtCore import QVariant
+
+feat1 = feat2 = QgsFeature(layer.fields())
+fid = 99
+feat1.setId(fid)
+</code></pre>
+
+<ul>
+<li>Adicionando duas feições:</li>
+</ul>
+<pre><code class="python">layer.addFeatures([feat1,feat2])
+</code></pre>
+
+<ul>
+<li>Deletando feição com ID específico:</li>
+</ul>
+<pre><code class="python">layer.deleteFeature(fid)
+</code></pre>
+
+<ul>
+<li>Determinando nova geometria para uma função:</li>
+</ul>
+<pre><code class="python">geometry = QgsGeometry.fromWkt(&quot;POINT(7 45)&quot;)
+layer.changeGeometry(fid, geometry)
+</code></pre>
+
+<ul>
+<li>Atualizando um atributo (valor dado) a partir do índice de um campo:</li>
+</ul>
+<pre><code class="python">fieldIndex =1
+value ='My new name'
+layer.changeAttributeValue(fid, fieldIndex, value)
+</code></pre>
+
+<ul>
+<li>Adicionando um campo:</li>
+</ul>
+<pre><code class="python">layer.addAttribute(QgsField(&quot;mytext&quot;, QVariant.String))
+</code></pre>
+
+<ul>
+<li>Removendo um campo: </li>
+</ul>
+<pre><code class="python">layer.deleteAttribute(fieldIndex)
+</code></pre>
+
+<p><strong>8. Criando camadas vetoriais</strong></p>
+<p>Existem várias maneiras de gerar um conjunto de dados de camada vetorial, dentre elas:
+* A classe <strong>QgsVectorFileWriter</strong>: Uma classe conveniente para gravar arquivos vetoriais em disco, usando uma chamada estática <strong>writeAsVectorFormat()</strong> para salvar toda a camada vetorial ou criando uma instância da classe e chamadas de emissão para addFeature().
+* A classe <strong>QgsVectorLayer</strong>: um provedor de dados que interpreta o caminho fornecido (url) da fonte de dados para se conectar e acessar os dados. Ele pode ser usado para criar camadas temporários, baseados em memória ( memory) e conectar-se a conjuntos de dados OGR ( ogr), bancos de dados ( postgres, spatialite, mysql, mssql) e mais ( wfs, gpx, delimitedtext...).</p>
+<h2 id="manipulacao-de-geometrias">Manipulação de geometrias</h2>
+<p>Pontos, linestrings e polígonos que representam um recurso espacial são comumente chamados de geometrias. No QGIS, eles são representados com a <strong>QgsGeometry</strong> class.</p>
+<p>Às vezes, uma geometria é, na verdade, uma coleção de geometrias simples. Essa geometria é chamada de multi-part geometry. Se ele contém apenas um tipo de geometria simples, nós o chamamos de multi-point, multi-linestring ou multi-polygon. As coordenadas das geometrias podem estar em qualquer sistema de referência de coordenadas (CRS). Ao buscar recursos de uma camada, as geometrias associadas terão coordenadas no CRS da camada.</p>
+<p><strong>1. Construção de geometrias</strong>
+O PyQGIS permite a construção de diversas geometrias, por exemplo:
+* <strong>Coordenadas:</strong></p>
+<pre><code class="python">gPnt = QgsGeometry.fromPointXY(QgsPointXY(1,1))
+print(gPnt)
+gLine = QgsGeometry.fromPolyline([QgsPoint(1,1),QgsPoint(2,2)])
+print(gLine)
+gPolygon = QgsGeometry.fromPolygonXY([[QgsPointXY(1,1),QgsPointXY(2,2),QgsPointXY(2,1)]])
+print(gPolygon)
+</code></pre>
+
+<ul>
+<li><strong>WKT (Well Known Text):</strong></li>
+</ul>
+<pre><code class="python">geom = QgsGeometry.fromWkt(&quot;POINT(3,4)&quot;)
+print(geom)
+</code></pre>
+
+<ul>
+<li><strong>WKB (Well Known Binary):</strong></li>
+</ul>
+<pre><code class="python">g = QgsGeometry()
+wkb = bytes.fromhex(&quot;010100000000000000000045400000000000001440&quot;)
+g.fromWkb(wkb)
+</code></pre>
+
+<p><strong>2. Acesso à geometria</strong>
+É possível acessar uma geometria já conhecida (WKB), através do método wkbType():</p>
+<pre><code class="python">if gPnt.wkbType() == QgsWkbTypes.Point:
+   print(gPnt.wkbType())
+if gLine.wkbType() == QgsWkbTypes.LineString:
+   print(gLine.wkbType())
+if gPolygon.wkbType() == QgsWkbTypes.Polygon:
+   print(gPolygon.wkbType())
+</code></pre>
+
+<p><strong>3. Operações e predicados de uma geometria</strong>
+O QGIS utiliza a biblioteca GEOS para operações de geometria avançadas, como predicados de geometria (<strong>contains(), intersects()...</strong>) e operações de conjunto (<strong>combine(), difference()...</strong>). Ele também pode calcular propriedades geométricas, como a área de polígonos ou comprimentos de polígonos ou linhas. Abaixo, encontra-se um exemplo que combina a iteração dos recursos em uma determinada camada e a execução de alguns cálculos geométricos com base em suas geometrias. O código a seguir assume que “layer” é um objeto QgsVectorLayer que possui o recurso polygon:</p>
+<pre><code class="python">layer = QgsProject.instance().mapLayersByName('countries')[0]
+
+query = '&quot;name&quot; LIKE \'Z%\''
+features = layer.getFeatures(QgsFeatureRequest().setFilterExpression(query))
+
+for f in features:
+   geom = f.geometry()
+   name = f.attribute('NAME')
+   print(name)
+   print('Area: ', geom.area())
+   print('Perimeter: ', geom.length())
+--------------------------------------
+Zambia
+Area: 62.822790653431205
+Perimeter: 50.65232014052552
+Zimbabwe
+Area: 33.41113559136521
+Perimeter: 26.608288555013935
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../4%29-Processing/" class="btn btn-neutral float-right" title="4) Processing">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../2%29-Links-%C3%9Ateis/" class="btn btn-neutral" title="2) Links Úteis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../2%29-Links-%C3%9Ateis/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../4%29-Processing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

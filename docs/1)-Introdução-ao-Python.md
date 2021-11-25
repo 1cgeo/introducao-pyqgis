@@ -1,4 +1,5 @@
-# A Estrutura do Python
+
+#A Estrutura do Python
 ## Variáveis
 Variáveis são espaços de memória utilizados para armazenar e manipular dados. Diferentemente de outras linguagens de programação, não é necessário declarar o tipo das variáveis a serem usadas no início do código. Alguns dos tipos de variáveis mais utilizados no Python são:
 * **int:** armazena números inteiros.
